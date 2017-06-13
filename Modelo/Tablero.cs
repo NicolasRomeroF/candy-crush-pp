@@ -33,7 +33,6 @@ namespace Modelo
                 return _M;
             }
             private set
-            {
                 if (value >= 6)
                     _M = value;
                 else
