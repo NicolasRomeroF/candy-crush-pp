@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Modelo
+namespace CC.modelo
 {
     public class Casilla
     {

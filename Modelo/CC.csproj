@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B1F4AA48-7B04-4A29-8C40-0E70AED0950B}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Modelo</RootNamespace>
-    <AssemblyName>Modelo</AssemblyName>
+    <RootNamespace>CC</RootNamespace>
+    <AssemblyName>CC</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -42,13 +42,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Casilla.cs" />
+    <Compile Include="modelo\Casilla.cs" />
+    <Compile Include="modelo\Juego.cs" />
+    <Compile Include="modelo\Jugador.cs" />
+    <Compile Include="modelo\Parametros.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Tablero.cs" />
+    <Compile Include="modelo\Tablero.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="vista\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
