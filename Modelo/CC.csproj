@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B1F4AA48-7B04-4A29-8C40-0E70AED0950B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>CC</RootNamespace>
     <AssemblyName>CC</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
@@ -31,9 +31,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,19 +47,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="modelo\Casilla.cs" />
+    <Compile Include="modelo\Dulce.cs" />
+    <Compile Include="modelo\Coords.cs" />
     <Compile Include="modelo\Juego.cs" />
     <Compile Include="modelo\Jugador.cs" />
     <Compile Include="modelo\Parametros.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="modelo\Tablero.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="vista\MenuInicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\MenuInicio.Designer.cs">
+      <DependentUpon>MenuInicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\OpcionesJuego.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\OpcionesJuego.Designer.cs">
+      <DependentUpon>OpcionesJuego.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\VistaTablero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\VistaTablero.Designer.cs">
+      <DependentUpon>VistaTablero.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="vista\" />
+    <EmbeddedResource Include="vista\MenuInicio.resx">
+      <DependentUpon>MenuInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\OpcionesJuego.resx">
+      <DependentUpon>OpcionesJuego.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\VistaTablero.resx">
+      <DependentUpon>VistaTablero.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

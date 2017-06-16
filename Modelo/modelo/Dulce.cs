@@ -2,7 +2,7 @@
 
 namespace CC.modelo
 {
-    public class Casilla
+    public class Dulce
     {
         public static readonly char[] colores = { 'A', 'B', 'C', 'D', 'E' };
 

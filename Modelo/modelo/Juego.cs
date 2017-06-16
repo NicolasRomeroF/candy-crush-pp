@@ -6,13 +6,47 @@ using System.Threading.Tasks;
 
 namespace CC.modelo
 {
-    class Juego
+    public class Juego
     {
         public Jugador J { get; private set; }
         public Tablero T { get; private set; }
+        private int Dificultad{ get; set;}
 
         public Juego(Jugador j, Parametros p )
         {
+            J = j;
+            T = new Tablero(p.N, p.M, p.Dificultad);
+            Dificultad = p.Dificultad;
+            j.Turnos = determinarTurnos();
+        }
+
+        private int determinarTurnos()
+        {
+            switch (Dificultad)
+            {
+                case 1:
+                    return T.N * T.M / 2;
+                case 2:
+                    return T.N * T.M / 3;
+                case 3:
+                    return T.N * T.M / 4;
+                default:
+                    return T.N * T.M / 2;
+            }
+        }
+
+        public bool tryMover(Coords origen,Coords destino)
+        {
+            if(J.Turnos>0)
+                return T.tryMover(origen, destino);
+            return false;
+        }
+
+        public void jugar()
+        {
+            Coords origen, destino;
+
+
 
         }
         
