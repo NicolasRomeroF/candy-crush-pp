@@ -7,7 +7,6 @@ namespace CC.modelo
         public static readonly char[] colores = { 'A', 'B', 'C', 'D', 'E' };
 
         public char Color { get; set; }
-        public char color;
         public int Recubrimiento {
             get
             {

@@ -42,13 +42,24 @@ namespace CC.modelo
             return false;
         }
 
-        public void jugar()
+        public void eliminar()
         {
-            Coords origen, destino;
+            bool flag = true;
+            while (flag)
+            {
+                List<Coords> delete = T.checkCandies();
+                if (delete != null)
+                {
+                    T.eliminar(delete);
+                    Coords.printLista(delete);
+                }
+                else
+                    flag = false;
 
-
-
+            }
         }
+
+  
         
     }
 }

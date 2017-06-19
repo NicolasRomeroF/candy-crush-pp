@@ -17,6 +17,8 @@ namespace CC.vista
     {
         public Juego J { get; private set; }
         public Button[,] botones { get; set; }
+        private bool moverState = false;
+        private Coords last;
         public VistaTablero(Juego j)
         {
             InitializeComponent();
@@ -43,27 +45,68 @@ namespace CC.vista
                     botones[i, j].Width = 40;
                     botones[i, j].Margin = new Padding(0, 0, 0, 0);
                     botones[i, j].Click += new EventHandler(btnTablero_Click);
+                    botones[i, j].Text = J.T.Matriz[i, j].ToString();
                     //botones[i, j].MouseEnter += new EventHandler(btnTablero_MouseEnter);
                     //botones[i, j].MouseLeave += new EventHandler(btnTablero_MouseLeave);
-
                     tableLayoutPanelTablero.Controls.Add(botones[i, j], j, i);
-                    //tableLayoutPanelTablero.Controls.Add(botones[i, j]);
-
                 }
             }
-
-
         }
 
         private void btnTablero_Click(object sender, EventArgs e)
         {
             Button boton = (Button)sender;
             String[] coords = boton.Name.Split(',');
-            int x = int.Parse(coords[0]);
-            int y = int.Parse(coords[1]);
+            int i = int.Parse(coords[0]);
+            int j = int.Parse(coords[1]);
+            if (moverState)
+            {
+                Coords act = new Coords(i, j);
+                bool intento = J.tryMover(last, act);
+                Console.WriteLine(intento);
 
-            boton.BackColor= Color.Green;
+                if (intento)
+                    mover(last,act);
 
+                J.eliminar();
+                
+                moverState = false;
+
+            }
+            else
+            {
+                last.Fila = i;
+                last.Columna = j;
+                boton.BackColor = Color.Green;
+                moverState = true;
+            }
+            update();
+            String info = "i: " + i + " j: " + j + " text: " + J.T.Matriz[i, j].ToString();
+            Console.WriteLine(info);
         }
+
+        private void mover(Coords origen,Coords destino)
+        {
+            Button aux = botones[origen.Fila, origen.Columna];
+            //botones[origen.Fila, origen.Columna] = botones[destino.Fila, destino.Columna];
+            tableLayoutPanelTablero.Controls.Remove(aux);
+            tableLayoutPanelTablero.Controls.Add(botones[origen.Fila, origen.Columna], origen.Columna, origen.Fila);
+            //botones[destino.Fila, destino.Columna] = aux;
+            tableLayoutPanelTablero.Controls.Add(botones[destino.Fila, destino.Columna], destino.Columna, destino.Fila);
+        }
+
+        private void update()
+        {
+            for(int i=0;i<J.T.N;i++)
+            {
+                for (int j = 0; j < J.T.M; j++)
+                {
+                    botones[i, j].BackColor = Color.Empty;
+                    botones[i, j].Text = J.T.Matriz[i,j].ToString();
+                    //tableLayoutPanelTablero.Controls.
+                }
+            }
+        }
+
     }
 }

@@ -182,5 +182,151 @@ namespace CC.modelo
                 Console.Write("\n");
             }
         }
+
+        public List<Coords> checkCandies()
+        {
+            int i, j;
+            List<Coords> arreglo;
+            for (i = 0; i < N; i++)
+            {
+                for (j = 0; j < M; j++)
+                {
+                    if (i < N - 2)
+                    {
+                        if (Matriz[i,j].Color == Matriz[i + 1,j].Color && Matriz[i,j].Color == Matriz[i + 2,j].Color)
+                        {
+                            arreglo = agregarColDulces(i, j);
+                            return arreglo;
+                        }
+                    }
+                    if (j < M - 2)
+                    {
+                        if (Matriz[i,j].Color == Matriz[i,j + 1].Color && Matriz[i,j].Color == Matriz[i,j + 2].Color)
+                        {
+                            arreglo = agregarFilaDulces(i, j);
+                            return arreglo;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+
+        private List<Coords> agregarColDulces(int i, int j)
+        {
+            char target = Matriz[i,j].Color;
+            int aux = 0;
+            int flag = 1;
+            List<Coords> colDulces = new List<Coords>();
+            while (flag == 1 && target == Matriz[i + aux,j].Color)
+            {
+                Coords actual = new Coords(i + aux, j,2);
+                colDulces.Add(actual);
+                aux++;
+                if ((i + aux) == N)
+                {
+                    flag = 0;
+                }
+            }
+            return colDulces;
+        }
+
+        private List<Coords> agregarFilaDulces(int i, int j)
+        {
+            char target = Matriz[i, j].Color;
+            int aux = 0;
+            int flag = 1;
+            List<Coords> filaDulces = new List<Coords>();
+            while (flag == 1 && target == Matriz[i, j+aux].Color)
+            {
+                Coords actual = new Coords(i, j+aux, 2);
+                filaDulces.Add(actual);
+                aux++;
+                if ((j + aux) == M)
+                {
+                    flag = 0;
+                }
+            }
+            return filaDulces;
+        }
+
+        public void eliminar(List<Coords> eliminar)
+        {
+            int size = eliminar.Count;
+            int cond = eliminar[0].FilCol;
+            int i;
+            int cantTipos = CantTipos;
+            char dulceNuevo;
+            if (cond == 1)
+            {
+                for (i = 0; i < size; i++)
+                {
+                    if (i == 0 && eliminar[i].Columna != 0)
+                    {
+                        if (Matriz[eliminar[i].Fila,eliminar[i].Columna - 1].Recubrimiento != 0)
+                        {
+                            Matriz[eliminar[i].Fila,eliminar[i].Columna - 1].Recubrimiento--;
+                        }
+                    }
+                    if (i == size - 1 && eliminar[i].Columna != M - 1)
+                    {
+                        if (Matriz[eliminar[i].Fila,eliminar[i].Columna + 1].Recubrimiento != 0)
+                        {
+                            Matriz[eliminar[i].Fila,eliminar[i].Columna + 1].Recubrimiento--;
+                        }
+                    }
+                    if (eliminar[i].Fila != 0 && Matriz[eliminar[i].Fila - 1,eliminar[i].Columna].Recubrimiento != 0)
+                    {
+                        Matriz[eliminar[i].Fila - 1,eliminar[i].Columna].Recubrimiento--;
+                    }
+                    if (eliminar[i].Fila != N - 1 && Matriz[eliminar[i].Fila + 1,eliminar[i].Columna].Recubrimiento != 0)
+                    {
+                        Matriz[eliminar[i].Fila + 1,eliminar[i].Columna].Recubrimiento--;
+                    }
+                    dulceNuevo = Dulce.dulceRandom(rnd,cantTipos);
+                    Matriz[eliminar[i].Fila,eliminar[i].Columna].Color = dulceNuevo;
+                    if (Matriz[eliminar[i].Fila,eliminar[i].Columna].Recubrimiento > 0)
+                    {
+                        Matriz[eliminar[i].Fila,eliminar[i].Columna].Recubrimiento--;
+                    }
+                }
+            }
+            if (cond == 2)
+            {
+                for (i = 0; i < size; i++)
+                {
+                    if (i == 0 && eliminar[i].Fila != 0)
+                    {
+                        if (Matriz[eliminar[i].Fila - 1,eliminar[i].Columna].Recubrimiento != 0)
+                        {
+                            Matriz[eliminar[i].Fila - 1,eliminar[i].Columna].Recubrimiento--;
+                        }
+                    }
+                    if (i == size - 1 && eliminar[i].Fila != N - 1)
+                    {
+                        if (Matriz[eliminar[i].Fila + 1,eliminar[i].Columna].Recubrimiento != 0)
+                        {
+                            Matriz[eliminar[i].Fila + 1,eliminar[i].Columna].Recubrimiento--;
+                        }
+                    }
+                    if (eliminar[i].Columna != 0 && Matriz[eliminar[i].Fila,eliminar[i].Columna - 1].Recubrimiento != 0)
+                    {
+                        Matriz[eliminar[i].Fila,eliminar[i].Columna - 1].Recubrimiento--;
+                    }
+                    if (eliminar[i].Columna != M - 1 && Matriz[eliminar[i].Fila,eliminar[i].Columna + 1].Recubrimiento != 0)
+                    {
+                        Matriz[eliminar[i].Fila,eliminar[i].Columna + 1].Recubrimiento--;
+                    }
+                    dulceNuevo = Dulce.dulceRandom(rnd,cantTipos);
+                    Matriz[eliminar[i].Fila,eliminar[i].Columna].Color = dulceNuevo;
+                    if (Matriz[eliminar[i].Fila,eliminar[i].Columna].Recubrimiento > 0)
+                    {
+                        Matriz[eliminar[i].Fila,eliminar[i].Columna].Recubrimiento--;
+                    }
+                }
+            }
+        }
+
+
     }
 }
