@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -63,24 +64,30 @@ namespace CC.vista
             {
                 Coords act = new Coords(i, j);
                 bool intento = J.tryMover(last, act);
+                Thread.Sleep(1000);
+                update();
                 Console.WriteLine(intento);
 
                 if (intento)
-                    mover(last,act);
-
-                J.eliminar();
-                
+                {
+                    Console.WriteLine("Se movio");
+                    
+                    eliminar();
+                }
+                    
                 moverState = false;
 
             }
             else
             {
+                Console.WriteLine("else");
                 last.Fila = i;
                 last.Columna = j;
+                update();
                 boton.BackColor = Color.Green;
                 moverState = true;
             }
-            update();
+            
             String info = "i: " + i + " j: " + j + " text: " + J.T.Matriz[i, j].ToString();
             Console.WriteLine(info);
         }
@@ -105,6 +112,19 @@ namespace CC.vista
                     botones[i, j].Text = J.T.Matriz[i,j].ToString();
                     //tableLayoutPanelTablero.Controls.
                 }
+            }
+            this.Refresh();
+        }
+
+        private void eliminar()
+        {
+            bool flag = true;
+            while (flag)
+            {
+                flag = J.eliminar();
+                update();
+
+                Thread.Sleep(1000);
             }
         }
 

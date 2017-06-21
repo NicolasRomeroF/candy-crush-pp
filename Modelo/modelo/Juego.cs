@@ -42,7 +42,7 @@ namespace CC.modelo
             return false;
         }
 
-        public void eliminar()
+        public void eliminar2()
         {
             bool flag = true;
             while (flag)
@@ -59,7 +59,23 @@ namespace CC.modelo
             }
         }
 
-  
-        
+        public bool eliminar()
+        {
+           
+            List<Coords> delete = T.checkCandies();
+            if (delete != null)
+            {
+                T.eliminar(delete);
+                Coords.printLista(delete);
+                return true;
+            }
+
+            return false;
+               
+            
+        }
+
+
+
     }
 }
