@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CC.modelo;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace CC.vista
         public MenuInicio()
         {
             InitializeComponent();
+            textBoxContraseña.PasswordChar = '*';
         }
 
         private void buttonJugar_Click(object sender, EventArgs e)
@@ -23,6 +25,17 @@ namespace CC.vista
             this.Hide();
             oj.ShowDialog();
             this.Close();
+        }
+
+        private void buttonIngresar_Click(object sender, EventArgs e)
+        {
+            String user = textBoxUsuario.Text;
+            String pass = textBoxContraseña.Text;
+            bool login = Login.login(user,pass);
+            if (login)
+                buttonJugar_Click(null,null);
+            else
+                System.Windows.Forms.MessageBox.Show("Usuario o contraseña incorrecta!");
         }
     }
 }
