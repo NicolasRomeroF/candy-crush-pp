@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,9 +14,12 @@ namespace CC.vista
 {
     public partial class OpcionesJuego : Form
     {
+        public static Form previous;
+
         public OpcionesJuego()
         {
             InitializeComponent();
+            FormClosing+= OpcionesJuego_FormClosing;
         }
 
         private void buttonJugar_Click(object sender, EventArgs e)
@@ -29,8 +33,8 @@ namespace CC.vista
             Juego juego = new Juego(j, p);
             VistaTablero vt = new VistaTablero(juego);
             this.Hide();
-            vt.ShowDialog();
-            this.Close();
+            vt.Show();
+            VistaTablero.previous = this;
 
         }
 
@@ -54,6 +58,26 @@ namespace CC.vista
                     break;
             }
             return difInt;
+        }
+
+        private void OpcionesJuego_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult result = MessageBox.Show("¿Esta seguro que quiere salir?", "Salir", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

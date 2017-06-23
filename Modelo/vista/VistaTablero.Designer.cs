@@ -30,6 +30,7 @@
         {
             this.panelTablero = new System.Windows.Forms.Panel();
             this.tableLayoutPanelTablero = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonVolver = new System.Windows.Forms.Button();
             this.panelTablero.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,12 +55,23 @@
             this.tableLayoutPanelTablero.Size = new System.Drawing.Size(200, 100);
             this.tableLayoutPanelTablero.TabIndex = 0;
             // 
+            // buttonVolver
+            // 
+            this.buttonVolver.Location = new System.Drawing.Point(36, 571);
+            this.buttonVolver.Name = "buttonVolver";
+            this.buttonVolver.Size = new System.Drawing.Size(75, 23);
+            this.buttonVolver.TabIndex = 1;
+            this.buttonVolver.Text = "Volver";
+            this.buttonVolver.UseVisualStyleBackColor = true;
+            this.buttonVolver.Click += new System.EventHandler(this.buttonVolver_Click);
+            // 
             // VistaTablero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1051, 614);
+            this.Controls.Add(this.buttonVolver);
             this.Controls.Add(this.panelTablero);
             this.Name = "VistaTablero";
             this.Text = "VistaTablero";
@@ -72,5 +84,6 @@
 
         private System.Windows.Forms.Panel panelTablero;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelTablero;
+        private System.Windows.Forms.Button buttonVolver;
     }
 }

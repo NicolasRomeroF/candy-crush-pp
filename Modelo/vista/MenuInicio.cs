@@ -13,6 +13,8 @@ namespace CC.vista
 {
     public partial class MenuInicio : Form
     {
+        
+
         public MenuInicio()
         {
             InitializeComponent();
@@ -23,8 +25,8 @@ namespace CC.vista
         {
             OpcionesJuego oj = new OpcionesJuego();
             this.Hide();
-            oj.ShowDialog();
-            this.Close();
+            oj.Show();
+            OpcionesJuego.previous = this;
         }
 
         private void buttonIngresar_Click(object sender, EventArgs e)
@@ -35,7 +37,7 @@ namespace CC.vista
             if (login)
                 buttonJugar_Click(null,null);
             else
-                System.Windows.Forms.MessageBox.Show("Usuario o contraseña incorrecta!");
+                MessageBox.Show("Usuario o contraseña incorrecta!");
         }
     }
 }

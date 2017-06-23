@@ -67,12 +67,34 @@ namespace CC.modelo
             {
                 T.eliminar(delete);
                 Coords.printLista(delete);
+                J.Puntaje = J.Puntaje + 100 * delete.Count +50 * (delete.Count - 3);
                 return true;
             }
 
             return false;
                
             
+        }
+
+        public bool checkGanar()
+        {
+            int i, j;
+            for (i = 0; i < T.N; i++)
+            {
+                for (j = 0; j < T.M; j++)
+                {
+                    if (T.Matriz[i,j].Recubrimiento > 0)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public int getPuntaje()
+        {
+            return J.Puntaje;
         }
 
 
