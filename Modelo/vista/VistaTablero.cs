@@ -27,13 +27,21 @@ namespace CC.vista
             ganar += mostrarGanar;
             perder += mostrarPerder;
             FormClosing += VistaTablero_FormClosing;
+            labelUsuarioShow.Text = Juego.getNombre();
+            labelPuntajeShow.Text = Juego.getPuntaje()+"";
+            labelMovimientosShow.Text = Juego.getMovimientos() + "";
+            labelSeleccionar.Text = "Seleccione dulce a mover";
+
         }
 
         private void mostrarPerder(Juego game, EventArgs e)
         {
-            
-
-            throw new NotImplementedException();
+            if (Juego.checkPerder())
+            {
+                MessageBox.Show("Te has quedado sin movimientos, has perdido.");
+                this.Dispose();
+                previous.Show();
+            }
         }
 
         private void mostrarGanar(Juego game, EventArgs e)
@@ -42,6 +50,7 @@ namespace CC.vista
             {
                 MessageBox.Show("Has ganado "+game.J.Nombre+"!\n"+"Tu puntaje final fue: "+game.getPuntaje());
                 this.Dispose();
+                previous.Show();
             }
         }
 
@@ -64,7 +73,9 @@ namespace CC.vista
                     botones[i, j].Width = 40;
                     botones[i, j].Margin = new Padding(0, 0, 0, 0);
                     botones[i, j].Click += new EventHandler(btnTablero_Click);
-                    botones[i, j].Text = Juego.T.Matriz[i, j].ToString();
+                    botones[i, j].Text = Juego.T.Matriz[i, j].Recubrimiento+"";
+                    botones[i, j].Image = getImagen(i, j);
+                    //botones[i, j].BackgroundImageLayout = ImageLayout.Stretch;
                     //botones[i, j].MouseEnter += new EventHandler(btnTablero_MouseEnter);
                     //botones[i, j].MouseLeave += new EventHandler(btnTablero_MouseLeave);
                     tableLayoutPanelTablero.Controls.Add(botones[i, j], j, i);
@@ -82,17 +93,22 @@ namespace CC.vista
             {
                 Coords act = new Coords(i, j);
                 bool intento = Juego.tryMover(last, act);
-                Thread.Sleep(1000);
                 update();
                 Console.WriteLine(intento);
 
+                pictureBoxCargando.Visible = true;
+                Refresh();
                 if (intento)
                 {
                     Console.WriteLine("Se movio");
                     
                     eliminar();
                 }
-                ganar(Juego, e);    
+                pictureBoxCargando.Visible = false;
+                Refresh();
+                ganar(Juego, e);
+                perder(Juego, e);
+                labelSeleccionar.Text = "Seleccione dulce a mover";
                 moverState = false;
 
             }
@@ -102,7 +118,8 @@ namespace CC.vista
                 last.Fila = i;
                 last.Columna = j;
                 update();
-                boton.BackColor = Color.Green;
+                boton.BackColor = Color.LightSkyBlue;
+                labelSeleccionar.Text = "Seleccione destino";
                 moverState = true;
             }
             
@@ -110,15 +127,6 @@ namespace CC.vista
             Console.WriteLine(info);
         }
 
-        private void mover(Coords origen,Coords destino)
-        {
-            Button aux = botones[origen.Fila, origen.Columna];
-            //botones[origen.Fila, origen.Columna] = botones[destino.Fila, destino.Columna];
-            tableLayoutPanelTablero.Controls.Remove(aux);
-            tableLayoutPanelTablero.Controls.Add(botones[origen.Fila, origen.Columna], origen.Columna, origen.Fila);
-            //botones[destino.Fila, destino.Columna] = aux;
-            tableLayoutPanelTablero.Controls.Add(botones[destino.Fila, destino.Columna], destino.Columna, destino.Fila);
-        }
 
         private void update()
         {
@@ -126,11 +134,14 @@ namespace CC.vista
             {
                 for (int j = 0; j < Juego.T.M; j++)
                 {
-                    botones[i, j].BackColor = Color.Empty;
-                    botones[i, j].Text = Juego.T.Matriz[i,j].ToString();
-                    //tableLayoutPanelTablero.Controls.
+                    botones[i, j].BackColor = getColorRecubrimiento(i,j);
+                    botones[i, j].Text = Juego.T.Matriz[i, j].Recubrimiento + "";
+                    botones[i, j].Image = getImagen(i, j);
+
                 }
             }
+            labelMovimientosShow.Text = Juego.getMovimientos() + "";
+            labelPuntajeShow.Text = Juego.getPuntaje() + "";
             this.Refresh();
         }
 
@@ -139,10 +150,9 @@ namespace CC.vista
             bool flag = true;
             while (flag)
             {
-                flag = Juego.eliminar();
-                update();
-
                 Thread.Sleep(1000);
+                flag = Juego.eliminar();
+                update(); 
             }
         }
 
@@ -172,5 +182,46 @@ namespace CC.vista
                 e.Cancel = true;
             }
         }
+
+        private Color getColorRecubrimiento(int i,int j)
+        {
+            int rec = Juego.T.Matriz[i, j].Recubrimiento;
+            switch(rec)
+            {
+                case 0:
+                    return Color.Blue;
+                case 1:
+                    return Color.Green;
+                case 2:
+                    return Color.Yellow;
+                case 3:
+                    return Color.Red;
+                default:
+                    return Color.Blue;
+            }
+        }
+
+        private Bitmap getImagen(int i, int j)
+        {
+            int color = Juego.T.Matriz[i, j].Color;
+            switch (color)
+            {
+                case 'A':
+                    return Properties.Resources.A;
+                case 'B':
+                    return Properties.Resources.B;
+                case 'C':
+                    return Properties.Resources.C;
+                case 'D':
+                    return Properties.Resources.D;
+                case 'E':
+                    return Properties.Resources.E;
+                default:
+                    return Properties.Resources.A;
+            }
+
+        }
     }
+
+
 }

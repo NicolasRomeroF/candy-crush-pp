@@ -37,8 +37,11 @@ namespace CC.modelo
 
         public bool tryMover(Coords origen,Coords destino)
         {
-            if(J.Turnos>0)
+            if (J.Turnos > 0)
+            {
+                J.Turnos--;
                 return T.tryMover(origen, destino);
+            }
             return false;
         }
 
@@ -92,9 +95,26 @@ namespace CC.modelo
             return true;
         }
 
+        public bool checkPerder()
+        {
+            if (J.Turnos <= 0)
+                return true;
+            return false;
+        }
+
         public int getPuntaje()
         {
             return J.Puntaje;
+        }
+
+        public int getMovimientos()
+        {
+            return J.Turnos;
+        }
+
+        public String getNombre()
+        {
+            return J.Nombre;
         }
 
 

@@ -31,7 +31,16 @@
             this.panelTablero = new System.Windows.Forms.Panel();
             this.tableLayoutPanelTablero = new System.Windows.Forms.TableLayoutPanel();
             this.buttonVolver = new System.Windows.Forms.Button();
+            this.labelUsuario = new System.Windows.Forms.Label();
+            this.labelPuntaje = new System.Windows.Forms.Label();
+            this.labelMovimientos = new System.Windows.Forms.Label();
+            this.labelPuntajeShow = new System.Windows.Forms.Label();
+            this.labelUsuarioShow = new System.Windows.Forms.Label();
+            this.labelMovimientosShow = new System.Windows.Forms.Label();
+            this.pictureBoxCargando = new System.Windows.Forms.PictureBox();
+            this.labelSeleccionar = new System.Windows.Forms.Label();
             this.panelTablero.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCargando)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTablero
@@ -65,18 +74,103 @@
             this.buttonVolver.UseVisualStyleBackColor = true;
             this.buttonVolver.Click += new System.EventHandler(this.buttonVolver_Click);
             // 
+            // labelUsuario
+            // 
+            this.labelUsuario.AutoSize = true;
+            this.labelUsuario.Location = new System.Drawing.Point(963, 35);
+            this.labelUsuario.Name = "labelUsuario";
+            this.labelUsuario.Size = new System.Drawing.Size(46, 13);
+            this.labelUsuario.TabIndex = 8;
+            this.labelUsuario.Text = "Usuario:";
+            // 
+            // labelPuntaje
+            // 
+            this.labelPuntaje.AutoSize = true;
+            this.labelPuntaje.Location = new System.Drawing.Point(963, 62);
+            this.labelPuntaje.Name = "labelPuntaje";
+            this.labelPuntaje.Size = new System.Drawing.Size(46, 13);
+            this.labelPuntaje.TabIndex = 9;
+            this.labelPuntaje.Text = "Puntaje:";
+            // 
+            // labelMovimientos
+            // 
+            this.labelMovimientos.AutoSize = true;
+            this.labelMovimientos.Location = new System.Drawing.Point(963, 88);
+            this.labelMovimientos.Name = "labelMovimientos";
+            this.labelMovimientos.Size = new System.Drawing.Size(115, 13);
+            this.labelMovimientos.TabIndex = 10;
+            this.labelMovimientos.Text = "Movimientos restantes:";
+            // 
+            // labelPuntajeShow
+            // 
+            this.labelPuntajeShow.AutoSize = true;
+            this.labelPuntajeShow.Location = new System.Drawing.Point(1015, 62);
+            this.labelPuntajeShow.Name = "labelPuntajeShow";
+            this.labelPuntajeShow.Size = new System.Drawing.Size(13, 13);
+            this.labelPuntajeShow.TabIndex = 11;
+            this.labelPuntajeShow.Text = "0";
+            // 
+            // labelUsuarioShow
+            // 
+            this.labelUsuarioShow.AutoSize = true;
+            this.labelUsuarioShow.Location = new System.Drawing.Point(1015, 35);
+            this.labelUsuarioShow.Name = "labelUsuarioShow";
+            this.labelUsuarioShow.Size = new System.Drawing.Size(39, 13);
+            this.labelUsuarioShow.TabIndex = 12;
+            this.labelUsuarioShow.Text = "default";
+            // 
+            // labelMovimientosShow
+            // 
+            this.labelMovimientosShow.AutoSize = true;
+            this.labelMovimientosShow.Location = new System.Drawing.Point(1084, 88);
+            this.labelMovimientosShow.Name = "labelMovimientosShow";
+            this.labelMovimientosShow.Size = new System.Drawing.Size(13, 13);
+            this.labelMovimientosShow.TabIndex = 13;
+            this.labelMovimientosShow.Text = "0";
+            // 
+            // pictureBoxCargando
+            // 
+            this.pictureBoxCargando.Image = global::CC.Properties.Resources.loading;
+            this.pictureBoxCargando.Location = new System.Drawing.Point(36, 151);
+            this.pictureBoxCargando.Name = "pictureBoxCargando";
+            this.pictureBoxCargando.Size = new System.Drawing.Size(84, 77);
+            this.pictureBoxCargando.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxCargando.TabIndex = 14;
+            this.pictureBoxCargando.TabStop = false;
+            this.pictureBoxCargando.Visible = false;
+            // 
+            // labelSeleccionar
+            // 
+            this.labelSeleccionar.AutoSize = true;
+            this.labelSeleccionar.Location = new System.Drawing.Point(7, 35);
+            this.labelSeleccionar.Name = "labelSeleccionar";
+            this.labelSeleccionar.Size = new System.Drawing.Size(104, 13);
+            this.labelSeleccionar.TabIndex = 15;
+            this.labelSeleccionar.Text = "Mensaje seleccionar";
+            // 
             // VistaTablero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1051, 614);
+            this.BackColor = System.Drawing.SystemColors.Desktop;
+            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.labelSeleccionar);
+            this.Controls.Add(this.pictureBoxCargando);
+            this.Controls.Add(this.labelMovimientosShow);
+            this.Controls.Add(this.labelUsuarioShow);
+            this.Controls.Add(this.labelPuntajeShow);
+            this.Controls.Add(this.labelMovimientos);
+            this.Controls.Add(this.labelPuntaje);
+            this.Controls.Add(this.labelUsuario);
             this.Controls.Add(this.buttonVolver);
             this.Controls.Add(this.panelTablero);
             this.Name = "VistaTablero";
             this.Text = "VistaTablero";
             this.panelTablero.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCargando)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -85,5 +179,13 @@
         private System.Windows.Forms.Panel panelTablero;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelTablero;
         private System.Windows.Forms.Button buttonVolver;
+        private System.Windows.Forms.Label labelUsuario;
+        private System.Windows.Forms.Label labelPuntaje;
+        private System.Windows.Forms.Label labelMovimientos;
+        private System.Windows.Forms.Label labelPuntajeShow;
+        private System.Windows.Forms.Label labelUsuarioShow;
+        private System.Windows.Forms.Label labelMovimientosShow;
+        private System.Windows.Forms.PictureBox pictureBoxCargando;
+        private System.Windows.Forms.Label labelSeleccionar;
     }
 }
