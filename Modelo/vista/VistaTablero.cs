@@ -18,6 +18,7 @@ namespace CC.vista
         private Coords last;
         private event finDelJuego ganar;
         private event finDelJuego perder;
+        private CCService.CandyCrushServiceClient ccs = new CCService.CandyCrushServiceClient();
 
         public VistaTablero(Juego j)
         {
@@ -31,7 +32,11 @@ namespace CC.vista
             labelPuntajeShow.Text = Juego.getPuntaje()+"";
             labelMovimientosShow.Text = Juego.getMovimientos() + "";
             labelSeleccionar.Text = "Seleccione dulce a mover";
+        }
 
+        private void puntajeSuperado(int scoreAnterior)
+        {
+            MessageBox.Show("Has superado tu puntaje anterior ("+scoreAnterior+")");
         }
 
         private void mostrarPerder(Juego game, EventArgs e)
@@ -103,6 +108,8 @@ namespace CC.vista
                     Console.WriteLine("Se movio");
                     
                     eliminar();
+                    
+                    ccs.setScoreAsync(Juego.getPuntaje(), Juego.getNombre());
                 }
                 pictureBoxCargando.Visible = false;
                 Refresh();
@@ -134,7 +141,6 @@ namespace CC.vista
             {
                 for (int j = 0; j < Juego.T.M; j++)
                 {
-                    botones[i, j].BackColor = getColorRecubrimiento(i,j);
                     botones[i, j].Text = Juego.T.Matriz[i, j].Recubrimiento + "";
                     botones[i, j].Image = getImagen(i, j);
 
@@ -153,6 +159,7 @@ namespace CC.vista
                 Thread.Sleep(1000);
                 flag = Juego.eliminar();
                 update(); 
+
             }
         }
 
@@ -220,6 +227,11 @@ namespace CC.vista
                     return Properties.Resources.A;
             }
 
+        }
+
+        private void buttonPrintTablero_Click(object sender, EventArgs e)
+        {
+            Juego.T.printTablero();
         }
     }
 

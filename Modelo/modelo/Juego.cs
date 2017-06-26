@@ -18,6 +18,14 @@ namespace CC.modelo
             T = new Tablero(p.N, p.M, p.Dificultad);
             Dificultad = p.Dificultad;
             j.Turnos = determinarTurnos();
+            Console.WriteLine(Dificultad);
+        }
+        public Juego(Jugador j, Tablero t)
+        {
+            J = j;
+            T = t;
+            Dificultad = t.dificultad; 
+            j.Turnos = determinarTurnos();
         }
 
         private int determinarTurnos()

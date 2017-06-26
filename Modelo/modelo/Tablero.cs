@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,8 @@ namespace CC.modelo
         private int _N;
         private int _M;
         private Random rnd = new Random();
+        public int dificultad;
+
         public int N
         {
             get
@@ -45,10 +48,13 @@ namespace CC.modelo
             }
         }
 
+       
+
         public Tablero(int N, int M, int dificultad)
         {
             this.N = N;
             this.M = M;
+            this.dificultad = dificultad;
 
             switch(dificultad)
             {
@@ -62,9 +68,118 @@ namespace CC.modelo
                     CantTipos = 5;
                     break;   
             }
+            Console.WriteLine("Dificultad:" + dificultad);
+            Console.WriteLine("CantTipos:" + CantTipos);
 
             crearTablero();
 
+        }
+
+        public Tablero(string tablero)
+        {
+            fromArchivo(tablero);
+        }
+
+        public static bool checkBoard(string path)
+        {
+            StreamReader file = new StreamReader(path);
+
+            String linea = file.ReadLine();
+            String[] datos = linea.Split(';');
+            int N, M, dif;
+            try
+            {
+                bool Ntry = int.TryParse(datos[0], out N);
+                bool Mtry = int.TryParse(datos[1], out M);
+                bool diftry = int.TryParse(datos[2], out dif);
+                if (!Ntry || !Mtry || !diftry)
+                    return false;
+                if (N < 6 || M < 6 || dif > 3 || dif < 0)
+                    return false;
+
+                String[] dulces;
+                char[] dulce;
+                bool check = true;
+
+                for (int i = 0; i < N; i++)
+                {
+                    linea = file.ReadLine();
+                    dulces = linea.Split(';');
+                    for (int j = 0; j < M; j++)
+                    {
+                        dulce = dulces[j].ToCharArray();
+                        check = Dulce.checkDulce(dulce[0], (int)Char.GetNumericValue(dulce[2]));
+                        if (!check)
+                            return false;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void fromArchivo(string path)
+        {
+            StreamReader file = new StreamReader(path);
+
+            String linea = file.ReadLine();
+            String[] datos = linea.Split(';');
+            String[] dulces;
+            char[] dulce;
+            N = int.Parse(datos[0]);
+            M = int.Parse(datos[1]);
+            dificultad = int.Parse(datos[2]);
+
+            Matriz = new Dulce[N, M];
+
+            for (int i = 0; i < N; i++)
+            {
+                linea = file.ReadLine();
+                dulces = linea.Split(';');
+                for (int j=0;j<M;j++)
+                {
+                    dulce = dulces[j].ToCharArray();
+                    Matriz[i, j] = new Dulce(dulce[0], (int)Char.GetNumericValue(dulce[2]));
+                    Console.WriteLine(Matriz[i, j]);
+
+                }
+            }
+            file.Close();
+
+            switch (dificultad)
+            {
+                case 1:
+                    CantTipos = 3;
+                    break;
+                case 2:
+                    CantTipos = 4;
+                    break;
+                case 3:
+                    CantTipos = 5;
+                    break;
+            }
+
+            printTablero();
+        }
+
+        public void toArchivo(string path)
+        {
+            StreamWriter file = new StreamWriter(path);
+            file.WriteLine(N + ";" + M + ";" + dificultad);
+            String linea="";
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < M; j++)
+                {
+                    linea = linea + Matriz[i, j] + ";";
+                }
+                file.WriteLine(linea);
+                linea = "";
+            }
+            file.Close();
         }
 
         private void crearTablero()
@@ -153,6 +268,14 @@ namespace CC.modelo
             }
             return false;
         }
+
+        public void mover(Coords origen, Coords destino)
+        {
+            Dulce aux = Matriz[origen.Fila, origen.Columna];
+            Matriz[origen.Fila, origen.Columna] = Matriz[destino.Fila, destino.Columna];
+            Matriz[destino.Fila, destino.Columna] = aux;
+        }
+
 
         private bool checkMover(Coords origen,Coords destino)
         {

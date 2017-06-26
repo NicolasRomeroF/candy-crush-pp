@@ -15,11 +15,22 @@ namespace CC.vista
     public partial class OpcionesJuego : Form
     {
         public static Form previous;
+        private String user;
 
         public OpcionesJuego()
         {
             InitializeComponent();
             FormClosing+= OpcionesJuego_FormClosing;
+            user = "Guest";
+            labelUsuario.Text = user;
+        }
+
+        public OpcionesJuego(String user)
+        {
+            InitializeComponent();
+            FormClosing += OpcionesJuego_FormClosing;
+            this.user = user;
+            labelUsuario.Text = user;
         }
 
         private void buttonJugar_Click(object sender, EventArgs e)
@@ -28,7 +39,8 @@ namespace CC.vista
             int M = (int)this.numericUpDownColumnas.Value;
             int dificultad = obtenerDificultad();
             Parametros p = new Parametros(N, M, dificultad);
-            Jugador j = new Jugador("Admin");
+            Console.WriteLine(p.Dificultad);
+            Jugador j = new Jugador(user);
 
             Juego juego = new Juego(j, p);
             VistaTablero vt = new VistaTablero(juego);
@@ -40,7 +52,7 @@ namespace CC.vista
 
         private int obtenerDificultad()
         {
-            String difS = this.comboBoxDificultad.ValueMember; ;
+            String difS = (String)this.comboBoxDificultad.SelectedItem; ;
             int difInt= 1;
             switch(difS)
             {
@@ -78,6 +90,31 @@ namespace CC.vista
             {
                 e.Cancel = true;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            previous.Show();
+        }
+
+        private void buttonCrearTablero_Click(object sender, EventArgs e)
+        {
+            int N = (int)this.numericUpDownFilas.Value;
+            int M = (int)this.numericUpDownColumnas.Value;
+            int dificultad = obtenerDificultad();
+            CrearTablero ct = new CrearTablero(N,M,dificultad,user);
+            this.Hide();
+            ct.Show();
+            CrearTablero.previous = this;
+        }
+
+        private void buttonCargarTablero_Click(object sender, EventArgs e)
+        {
+            VistaCargarTablero vct = new VistaCargarTablero(user);
+            VistaCargarTablero.previous = this;
+            Hide();
+            vct.Show();
         }
     }
 }

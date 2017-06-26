@@ -23,6 +23,13 @@ namespace CC.modelo
 
         private int _Recubrimiento; 
 
+        public Dulce() { }
+
+        public Dulce(char color,int recubrimiento)
+        {
+            Color = color;
+            Recubrimiento = recubrimiento;
+        }
         public static char dulceRandom(Random rnd,int cantTipos)
         {
             int indice = rnd.Next(0, cantTipos);
@@ -59,6 +66,13 @@ namespace CC.modelo
         {
             String casilla = Color + "." + Recubrimiento;
             return casilla;
+        }
+
+        public static bool checkDulce(char color,int recubrimiento)
+        {
+            if ((color == 'A' || color == 'B' || color == 'C' || color == 'D' || color == 'E') && (recubrimiento >= 0 && recubrimiento <= 3))
+                return true;
+            return false;
         }
 
     }

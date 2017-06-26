@@ -39,6 +39,7 @@
             this.labelMovimientosShow = new System.Windows.Forms.Label();
             this.pictureBoxCargando = new System.Windows.Forms.PictureBox();
             this.labelSeleccionar = new System.Windows.Forms.Label();
+            this.buttonPrintTablero = new System.Windows.Forms.Button();
             this.panelTablero.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCargando)).BeginInit();
             this.SuspendLayout();
@@ -49,7 +50,7 @@
             this.panelTablero.Controls.Add(this.tableLayoutPanelTablero);
             this.panelTablero.Location = new System.Drawing.Point(162, 12);
             this.panelTablero.Name = "panelTablero";
-            this.panelTablero.Size = new System.Drawing.Size(767, 590);
+            this.panelTablero.Size = new System.Drawing.Size(875, 657);
             this.panelTablero.TabIndex = 0;
             // 
             // tableLayoutPanelTablero
@@ -66,7 +67,7 @@
             // 
             // buttonVolver
             // 
-            this.buttonVolver.Location = new System.Drawing.Point(36, 571);
+            this.buttonVolver.Location = new System.Drawing.Point(12, 646);
             this.buttonVolver.Name = "buttonVolver";
             this.buttonVolver.Size = new System.Drawing.Size(75, 23);
             this.buttonVolver.TabIndex = 1;
@@ -77,7 +78,7 @@
             // labelUsuario
             // 
             this.labelUsuario.AutoSize = true;
-            this.labelUsuario.Location = new System.Drawing.Point(963, 35);
+            this.labelUsuario.Location = new System.Drawing.Point(1043, 35);
             this.labelUsuario.Name = "labelUsuario";
             this.labelUsuario.Size = new System.Drawing.Size(46, 13);
             this.labelUsuario.TabIndex = 8;
@@ -86,7 +87,7 @@
             // labelPuntaje
             // 
             this.labelPuntaje.AutoSize = true;
-            this.labelPuntaje.Location = new System.Drawing.Point(963, 62);
+            this.labelPuntaje.Location = new System.Drawing.Point(1043, 62);
             this.labelPuntaje.Name = "labelPuntaje";
             this.labelPuntaje.Size = new System.Drawing.Size(46, 13);
             this.labelPuntaje.TabIndex = 9;
@@ -95,7 +96,7 @@
             // labelMovimientos
             // 
             this.labelMovimientos.AutoSize = true;
-            this.labelMovimientos.Location = new System.Drawing.Point(963, 88);
+            this.labelMovimientos.Location = new System.Drawing.Point(1043, 88);
             this.labelMovimientos.Name = "labelMovimientos";
             this.labelMovimientos.Size = new System.Drawing.Size(115, 13);
             this.labelMovimientos.TabIndex = 10;
@@ -104,7 +105,7 @@
             // labelPuntajeShow
             // 
             this.labelPuntajeShow.AutoSize = true;
-            this.labelPuntajeShow.Location = new System.Drawing.Point(1015, 62);
+            this.labelPuntajeShow.Location = new System.Drawing.Point(1095, 62);
             this.labelPuntajeShow.Name = "labelPuntajeShow";
             this.labelPuntajeShow.Size = new System.Drawing.Size(13, 13);
             this.labelPuntajeShow.TabIndex = 11;
@@ -113,7 +114,7 @@
             // labelUsuarioShow
             // 
             this.labelUsuarioShow.AutoSize = true;
-            this.labelUsuarioShow.Location = new System.Drawing.Point(1015, 35);
+            this.labelUsuarioShow.Location = new System.Drawing.Point(1095, 35);
             this.labelUsuarioShow.Name = "labelUsuarioShow";
             this.labelUsuarioShow.Size = new System.Drawing.Size(39, 13);
             this.labelUsuarioShow.TabIndex = 12;
@@ -122,7 +123,7 @@
             // labelMovimientosShow
             // 
             this.labelMovimientosShow.AutoSize = true;
-            this.labelMovimientosShow.Location = new System.Drawing.Point(1084, 88);
+            this.labelMovimientosShow.Location = new System.Drawing.Point(1164, 88);
             this.labelMovimientosShow.Name = "labelMovimientosShow";
             this.labelMovimientosShow.Size = new System.Drawing.Size(13, 13);
             this.labelMovimientosShow.TabIndex = 13;
@@ -148,6 +149,16 @@
             this.labelSeleccionar.TabIndex = 15;
             this.labelSeleccionar.Text = "Mensaje seleccionar";
             // 
+            // buttonPrintTablero
+            // 
+            this.buttonPrintTablero.Location = new System.Drawing.Point(1058, 633);
+            this.buttonPrintTablero.Name = "buttonPrintTablero";
+            this.buttonPrintTablero.Size = new System.Drawing.Size(75, 23);
+            this.buttonPrintTablero.TabIndex = 16;
+            this.buttonPrintTablero.Text = "printTablero";
+            this.buttonPrintTablero.UseVisualStyleBackColor = true;
+            this.buttonPrintTablero.Click += new System.EventHandler(this.buttonPrintTablero_Click);
+            // 
             // VistaTablero
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,6 +166,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.Desktop;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.buttonPrintTablero);
             this.Controls.Add(this.labelSeleccionar);
             this.Controls.Add(this.pictureBoxCargando);
             this.Controls.Add(this.labelMovimientosShow);
@@ -166,7 +178,7 @@
             this.Controls.Add(this.buttonVolver);
             this.Controls.Add(this.panelTablero);
             this.Name = "VistaTablero";
-            this.Text = "VistaTablero";
+            this.Text = "CC";
             this.panelTablero.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCargando)).EndInit();
             this.ResumeLayout(false);
@@ -187,5 +199,6 @@
         private System.Windows.Forms.Label labelMovimientosShow;
         private System.Windows.Forms.PictureBox pictureBoxCargando;
         private System.Windows.Forms.Label labelSeleccionar;
+        private System.Windows.Forms.Button buttonPrintTablero;
     }
 }

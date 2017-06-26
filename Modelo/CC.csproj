@@ -53,6 +53,8 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -62,12 +64,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\CCService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="modelo\Dulce.cs" />
     <Compile Include="modelo\Coords.cs" />
     <Compile Include="modelo\Juego.cs" />
     <Compile Include="modelo\Jugador.cs" />
-    <Compile Include="modelo\Login.cs" />
     <Compile Include="modelo\Parametros.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="modelo\Tablero.cs" />
@@ -76,6 +82,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="vista\CrearTablero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\CrearTablero.Designer.cs">
+      <DependentUpon>CrearTablero.cs</DependentUpon>
     </Compile>
     <Compile Include="vista\MenuInicio.cs">
       <SubType>Form</SubType>
@@ -89,6 +101,18 @@
     <Compile Include="vista\OpcionesJuego.Designer.cs">
       <DependentUpon>OpcionesJuego.cs</DependentUpon>
     </Compile>
+    <Compile Include="vista\VistaCargarTablero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\VistaCargarTablero.Designer.cs">
+      <DependentUpon>VistaCargarTablero.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vista\VistaGuardarTablero.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vista\VistaGuardarTablero.Designer.cs">
+      <DependentUpon>VistaGuardarTablero.cs</DependentUpon>
+    </Compile>
     <Compile Include="vista\VistaTablero.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +123,13 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="bin\Debug\data.ccg" />
+    <None Include="Connected Services\CCService\CandyCrushService.wsdl" />
+    <None Include="Connected Services\CCService\CandyCrushService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CCService\CandyCrushService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -106,11 +137,20 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="vista\CrearTablero.resx">
+      <DependentUpon>CrearTablero.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="vista\MenuInicio.resx">
       <DependentUpon>MenuInicio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vista\OpcionesJuego.resx">
       <DependentUpon>OpcionesJuego.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\VistaCargarTablero.resx">
+      <DependentUpon>VistaCargarTablero.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vista\VistaGuardarTablero.resx">
+      <DependentUpon>VistaGuardarTablero.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vista\VistaTablero.resx">
       <DependentUpon>VistaTablero.cs</DependentUpon>
@@ -129,6 +169,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\CCService\CandyCrushService.disco" />
+    <None Include="Connected Services\CCService\CandyCrushService21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CCService\configuration91.svcinfo" />
+    <None Include="Connected Services\CCService\configuration.svcinfo" />
+    <None Include="Connected Services\CCService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="resources\A.png" />
     <Content Include="resources\B.png" />
     <Content Include="resources\C.png" />
@@ -136,6 +186,12 @@
     <Content Include="resources\D.png" />
     <Content Include="resources\E.png" />
     <Content Include="resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CCService\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="6a477f7f-4155-4819-b4e0-270091f00187" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:64258/CandyCrushService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="CandyCrushService.wsdl" MetadataType="Wsdl" ID="12bee1c7-e897-4483-9f86-2c7a4d934d17" SourceId="1" SourceUrl="http://localhost:64258/CandyCrushService.svc?wsdl" />
+    <MetadataFile FileName="CandyCrushService.xsd" MetadataType="Schema" ID="bbde2333-3bf0-4e9f-862d-caaee91e0a09" SourceId="1" SourceUrl="http://localhost:64258/CandyCrushService.svc?xsd=xsd1" />
+    <MetadataFile FileName="CandyCrushService1.xsd" MetadataType="Schema" ID="fcd1c80f-15bc-4c12-b957-7412e3190111" SourceId="1" SourceUrl="http://localhost:64258/CandyCrushService.svc?xsd=xsd0" />
+    <MetadataFile FileName="CandyCrushService21.xsd" MetadataType="Schema" ID="ec09bdc7-93e0-4669-b55f-7c76f1ecc98c" SourceId="1" SourceUrl="http://localhost:64258/CandyCrushService.svc?xsd=xsd2" />
+    <MetadataFile FileName="CandyCrushService.disco" MetadataType="Disco" ID="a0281e06-e2e5-41ea-9a6b-a0b8f358f84a" SourceId="1" SourceUrl="http://localhost:64258/CandyCrushService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

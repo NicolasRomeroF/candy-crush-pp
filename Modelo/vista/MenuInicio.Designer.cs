@@ -30,11 +30,11 @@
         {
             this.buttonJugarSC = new System.Windows.Forms.Button();
             this.buttonIngresar = new System.Windows.Forms.Button();
-            this.buttonCrearUsuario = new System.Windows.Forms.Button();
             this.labelUsuario = new System.Windows.Forms.Label();
             this.textBoxUsuario = new System.Windows.Forms.TextBox();
             this.textBoxContraseña = new System.Windows.Forms.TextBox();
             this.labelContraseña = new System.Windows.Forms.Label();
+            this.buttonRegistrarse = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonJugarSC
@@ -56,15 +56,6 @@
             this.buttonIngresar.Text = "Ingresar";
             this.buttonIngresar.UseVisualStyleBackColor = true;
             this.buttonIngresar.Click += new System.EventHandler(this.buttonIngresar_Click);
-            // 
-            // buttonCrearUsuario
-            // 
-            this.buttonCrearUsuario.Location = new System.Drawing.Point(13, 226);
-            this.buttonCrearUsuario.Name = "buttonCrearUsuario";
-            this.buttonCrearUsuario.Size = new System.Drawing.Size(118, 23);
-            this.buttonCrearUsuario.TabIndex = 2;
-            this.buttonCrearUsuario.Text = "Crear nuevo usuario";
-            this.buttonCrearUsuario.UseVisualStyleBackColor = true;
             // 
             // labelUsuario
             // 
@@ -98,20 +89,31 @@
             this.labelContraseña.TabIndex = 5;
             this.labelContraseña.Text = "Contraseña";
             // 
+            // buttonRegistrarse
+            // 
+            this.buttonRegistrarse.Location = new System.Drawing.Point(101, 166);
+            this.buttonRegistrarse.Name = "buttonRegistrarse";
+            this.buttonRegistrarse.Size = new System.Drawing.Size(75, 23);
+            this.buttonRegistrarse.TabIndex = 7;
+            this.buttonRegistrarse.Text = "Registrarse";
+            this.buttonRegistrarse.UseVisualStyleBackColor = true;
+            this.buttonRegistrarse.Click += new System.EventHandler(this.buttonRegistrarse_Click);
+            // 
             // MenuInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Desktop;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.buttonRegistrarse);
             this.Controls.Add(this.textBoxContraseña);
             this.Controls.Add(this.labelContraseña);
             this.Controls.Add(this.textBoxUsuario);
             this.Controls.Add(this.labelUsuario);
-            this.Controls.Add(this.buttonCrearUsuario);
             this.Controls.Add(this.buttonIngresar);
             this.Controls.Add(this.buttonJugarSC);
             this.Name = "MenuInicio";
-            this.Text = "MenuInicio";
+            this.Text = "CC";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,10 +123,10 @@
 
         private System.Windows.Forms.Button buttonJugarSC;
         private System.Windows.Forms.Button buttonIngresar;
-        private System.Windows.Forms.Button buttonCrearUsuario;
         private System.Windows.Forms.Label labelUsuario;
         private System.Windows.Forms.TextBox textBoxUsuario;
         private System.Windows.Forms.TextBox textBoxContraseña;
         private System.Windows.Forms.Label labelContraseña;
+        private System.Windows.Forms.Button buttonRegistrarse;
     }
 }
