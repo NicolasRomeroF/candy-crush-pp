@@ -124,6 +124,12 @@ namespace CC.vista
                     return Properties.Resources.D;
                 case 'E':
                     return Properties.Resources.E;
+                case 'X':
+                    return Properties.Resources.h_arrow;
+                case 'Y':
+                    return Properties.Resources.v_arrow;
+                case 'Z':
+                    return Properties.Resources.bomb;
                 default:
                     return Properties.Resources.A;
             }

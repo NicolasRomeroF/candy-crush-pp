@@ -248,6 +248,8 @@ namespace CC.modelo
                 }
             }
 
+            ponerEspeciales();
+
         }
 
         private void crearMatriz()
@@ -264,6 +266,7 @@ namespace CC.modelo
                 Dulce aux = Matriz[origen.Fila, origen.Columna];
                 Matriz[origen.Fila, origen.Columna] = Matriz[destino.Fila, destino.Columna];
                 Matriz[destino.Fila, destino.Columna] = aux;
+                checkEspeciales(origen,destino);
                 return true;
             }
             return false;
@@ -450,6 +453,139 @@ namespace CC.modelo
             }
         }
 
+        private void ponerEspeciales()
+        {
+            int i, j;
+            int prob;
 
+            Console.WriteLine("Especiales!!");
+
+            for (i = 0; i < N; i++)
+            {
+                for (j = 0; j < M; j++)
+                {
+                    prob = rnd.Next(0,36);
+                    if (prob < 2)
+                    {
+                        Matriz[i, j].Color = Dulce.especialRandom(rnd);
+                        Matriz[i,j].Recubrimiento = 0;
+                    }
+                }
+            }
+        }
+
+        private void explotarTablero()
+        {
+            int i, j;
+            for (i = 0; i < N; i++)
+            {
+                for (j = 0; j < M; j++)
+                {
+                    Matriz[i,j].Color = Dulce.dulceRandom(rnd,CantTipos);
+                    if (Matriz[i,j].Recubrimiento > 0)
+                    {
+                        Matriz[i,j].Recubrimiento--;
+                    }
+                }
+            }
+        }
+
+        private void explotarFila(int i)
+        {
+            int j;
+            for (j = 0; j < M; j++)
+            {
+                Matriz[i,j].Color = Dulce.dulceRandom(rnd,CantTipos);
+                if (Matriz[i,j].Recubrimiento > 0)
+                {
+                    Matriz[i,j].Recubrimiento--;
+                }
+            }
+        }
+
+        private void explotarCol(int j)
+        {
+            int i;
+            for (i = 0; i < N; i++)
+            {
+                Matriz[i,j].Color = Dulce.dulceRandom(rnd,CantTipos);
+                if (Matriz[i,j].Recubrimiento > 0)
+                {
+                    Matriz[i,j].Recubrimiento--;
+                }
+            }
+        }
+
+        private void explotarChars(char target)
+        {
+            int i, j;
+            for (i = 0; i < N; i++)
+            {
+                for (j = 0; j < M; j++)
+                {
+                    if (Matriz[i,j].Color == target)
+                    {
+                        Matriz[i,j].Color = Dulce.dulceRandom(rnd,CantTipos);
+                        if (Matriz[i,j].Recubrimiento > 0)
+                        {
+                            Matriz[i,j].Recubrimiento--;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void checkEspeciales(Coords posInicial, Coords posFinal)
+        {
+            if (Matriz[posInicial.Fila,posInicial.Columna].Color == 'X' && (Matriz[posFinal.Fila,posFinal.Columna].Color == 'Y' || Matriz[posFinal.Fila,posFinal.Columna].Color == 'Z' || Matriz[posFinal.Fila,posFinal.Columna].Color == 'X'))
+            {
+                explotarTablero();
+                return;
+            }
+            if (Matriz[posInicial.Fila,posInicial.Columna].Color == 'Y' && (Matriz[posFinal.Fila,posFinal.Columna].Color == 'X' || Matriz[posFinal.Fila,posFinal.Columna].Color == 'Z' || Matriz[posFinal.Fila,posFinal.Columna].Color == 'Y'))
+            {
+                explotarTablero();
+                return;
+            }
+            if (Matriz[posInicial.Fila,posInicial.Columna].Color == 'Z' && (Matriz[posFinal.Fila,posFinal.Columna].Color == 'X' || Matriz[posFinal.Fila,posFinal.Columna].Color == 'Y' || Matriz[posFinal.Fila,posFinal.Columna].Color == 'Z'))
+            {
+                explotarTablero();
+                return;
+            }
+            if (Matriz[posInicial.Fila,posInicial.Columna].Color == 'X')
+            {
+                explotarFila(posInicial.Fila);
+                return;
+            }
+            if (Matriz[posFinal.Fila,posFinal.Columna].Color == 'X')
+            {
+                explotarFila(posFinal.Fila);
+                return;
+            }
+            if (Matriz[posInicial.Fila,posInicial.Columna].Color == 'Y')
+            {
+                explotarCol(posInicial.Columna);
+                return;
+            }
+            if (Matriz[posFinal.Fila,posFinal.Columna].Color == 'Y')
+            {
+                explotarCol(posFinal.Columna);
+                return;
+            }
+            if (Matriz[posInicial.Fila,posInicial.Columna].Color == 'Z')
+            {
+                explotarChars(Matriz[posFinal.Fila,posFinal.Columna].Color);
+                char dulceNuevo = Dulce.dulceRandom(rnd,CantTipos);
+                Matriz[posInicial.Fila,posInicial.Columna].Color = dulceNuevo;
+                return;
+            }
+            if (Matriz[posFinal.Fila,posFinal.Columna].Color == 'Z')
+            {
+                explotarChars( Matriz[posInicial.Fila,posInicial.Columna].Color);
+                char dulceNuevo = Dulce.dulceRandom(rnd,CantTipos);
+                Matriz[posFinal.Fila,posFinal.Columna].Color = dulceNuevo;
+                return;
+            }
+        }
     }
 }

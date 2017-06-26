@@ -5,6 +5,7 @@ namespace CC.modelo
     public class Dulce
     {
         public static readonly char[] colores = { 'A', 'B', 'C', 'D', 'E' };
+        public static readonly char[] especiales = { 'X', 'Y', 'Z' };
 
         public char Color { get; set; }
         public int Recubrimiento {
@@ -30,11 +31,19 @@ namespace CC.modelo
             Color = color;
             Recubrimiento = recubrimiento;
         }
+
         public static char dulceRandom(Random rnd,int cantTipos)
         {
             int indice = rnd.Next(0, cantTipos);
             char dulceNuevo = colores[indice];
             return dulceNuevo;
+        }
+
+        public static char especialRandom(Random rnd)
+        {
+            int indice = rnd.Next(0, 3);
+            char especial = especiales[indice];
+            return especial;
         }
 
         public static int obtenerRecubrimiento(Random rnd,ref int recubrimientosRestantes)

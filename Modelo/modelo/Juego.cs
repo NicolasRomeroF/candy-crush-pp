@@ -87,6 +87,7 @@ namespace CC.modelo
             
         }
 
+
         public bool checkGanar()
         {
             int i, j;

@@ -169,6 +169,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resources\bomb.png" />
+    <Content Include="resources\v_arrow.png" />
     <None Include="Connected Services\CCService\CandyCrushService.disco" />
     <None Include="Connected Services\CCService\CandyCrushService21.xsd">
       <SubType>Designer</SubType>
@@ -185,6 +187,7 @@
     <Content Include="resources\cargando.gif" />
     <Content Include="resources\D.png" />
     <Content Include="resources\E.png" />
+    <Content Include="resources\h_arrow.png" />
     <Content Include="resources\loading.gif" />
   </ItemGroup>
   <ItemGroup>
