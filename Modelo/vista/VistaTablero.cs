@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace CC.vista
 {
-    public delegate void finDelJuego(Juego game, EventArgs e);
+    
 
     public partial class VistaTablero : Form
     {
@@ -16,8 +16,7 @@ namespace CC.vista
         public Button[,] botones { get; set; }
         private bool moverState = false;
         private Coords last;
-        private event finDelJuego ganar;
-        private event finDelJuego perder;
+        
         private CCService.CandyCrushServiceClient ccs = new CCService.CandyCrushServiceClient();
 
         public VistaTablero(Juego j)
@@ -25,8 +24,8 @@ namespace CC.vista
             InitializeComponent();
             Juego = j;
             generarBotones();
-            ganar += mostrarGanar;
-            perder += mostrarPerder;
+            Juego.subscribeGanar(mostrarGanar);
+            Juego.subscribePerder(mostrarPerder);
             FormClosing += VistaTablero_FormClosing;
             labelUsuarioShow.Text = Juego.getNombre();
             labelPuntajeShow.Text = Juego.getPuntaje()+"";
@@ -39,24 +38,21 @@ namespace CC.vista
             MessageBox.Show("Has superado tu puntaje anterior ("+scoreAnterior+")");
         }
 
-        private void mostrarPerder(Juego game, EventArgs e)
+        private void mostrarPerder()
         {
-            if (Juego.checkPerder())
-            {
-                MessageBox.Show("Te has quedado sin movimientos, has perdido.");
-                this.Dispose();
-                previous.Show();
-            }
+
+            MessageBox.Show("Te has quedado sin movimientos, has perdido.");
+            this.Dispose();
+            previous.Show();
+
         }
 
-        private void mostrarGanar(Juego game, EventArgs e)
+        private void mostrarGanar()
         {
-            if (Juego.checkGanar())
-            {
-                MessageBox.Show("Has ganado "+game.J.Nombre+"!\n"+"Tu puntaje final fue: "+game.getPuntaje());
-                this.Dispose();
-                previous.Show();
-            }
+
+            MessageBox.Show("Has ganado " + Juego.J.Nombre + "!\n" + "Tu puntaje final fue: " + Juego.getPuntaje());
+            this.Dispose();
+            previous.Show();
         }
 
         private void generarBotones()
@@ -114,8 +110,7 @@ namespace CC.vista
                 }
                 pictureBoxCargando.Visible = false;
                 Refresh();
-                ganar(Juego, e);
-                perder(Juego, e);
+                Juego.checkFinjuego();
                 labelSeleccionar.Text = "Seleccione dulce a mover";
                 moverState = false;
 
@@ -157,7 +152,7 @@ namespace CC.vista
             bool flag = true;
             while (flag)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
                 flag = Juego.eliminar();
                 update(); 
 
@@ -178,6 +173,7 @@ namespace CC.vista
                 DialogResult result = MessageBox.Show("¿Esta seguro que quiere salir?", "Salir", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
+                    
                     Environment.Exit(0);
                 }
                 else

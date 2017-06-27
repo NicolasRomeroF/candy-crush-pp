@@ -365,7 +365,7 @@ namespace CC.modelo
             List<Coords> filaDulces = new List<Coords>();
             while (flag == 1 && target == Matriz[i, j+aux].Color)
             {
-                Coords actual = new Coords(i, j+aux, 2);
+                Coords actual = new Coords(i, j+aux, 1);
                 filaDulces.Add(actual);
                 aux++;
                 if ((j + aux) == M)
@@ -387,6 +387,7 @@ namespace CC.modelo
             {
                 for (i = 0; i < size; i++)
                 {
+                    Console.WriteLine("i = " + i + "; fila = " + eliminar[i].Fila + "; columna = " + eliminar[i].Columna);
                     if (i == 0 && eliminar[i].Columna != 0)
                     {
                         if (Matriz[eliminar[i].Fila,eliminar[i].Columna - 1].Recubrimiento != 0)
@@ -419,8 +420,10 @@ namespace CC.modelo
             }
             if (cond == 2)
             {
+                
                 for (i = 0; i < size; i++)
                 {
+                    Console.WriteLine("cond 2 (columna) i = " + i + "; fila = " + eliminar[i].Fila + "; columna = " + eliminar[i].Columna);
                     if (i == 0 && eliminar[i].Fila != 0)
                     {
                         if (Matriz[eliminar[i].Fila - 1,eliminar[i].Columna].Recubrimiento != 0)

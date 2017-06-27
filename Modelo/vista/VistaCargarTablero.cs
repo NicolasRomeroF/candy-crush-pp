@@ -22,6 +22,7 @@ namespace CC.vista
             InitializeComponent();
             agregarElementos();
             this.user = user;
+            FormClosing += VistaCargarTablero_FormClosing;
         }
         private void agregarElementos()
         {
@@ -55,6 +56,26 @@ namespace CC.vista
         {
             previous.Show();
             Dispose();
+        }
+
+        private void VistaCargarTablero_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult result = MessageBox.Show("¿Esta seguro que quiere salir?", "Salir", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

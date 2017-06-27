@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace CC.modelo
 {
+    public delegate void finDelJuego();
+
     public class Juego
     {
         public Jugador J { get; private set; }
         public Tablero T { get; private set; }
         private int Dificultad{ get; set;}
+        private event finDelJuego ganar;
+        private event finDelJuego perder;
 
         public Juego(Jugador j, Parametros p )
         {
@@ -41,6 +45,24 @@ namespace CC.modelo
                 default:
                     return T.N * T.M / 2;
             }
+        }
+
+        public void subscribeGanar(finDelJuego f)
+        {
+            ganar += f;
+        }
+
+        public void subscribePerder(finDelJuego f)
+        {
+            perder += f;
+        }
+
+        public void checkFinjuego()
+        {
+            if (checkGanar())
+                ganar();
+            else if (checkPerder())
+                perder();
         }
 
         public bool tryMover(Coords origen,Coords destino)
@@ -90,7 +112,7 @@ namespace CC.modelo
         }
 
 
-        public bool checkGanar()
+        private bool checkGanar()
         {
             int i, j;
             for (i = 0; i < T.N; i++)
@@ -106,7 +128,7 @@ namespace CC.modelo
             return true;
         }
 
-        public bool checkPerder()
+        private bool checkPerder()
         {
             if (J.Turnos <= 0)
                 return true;

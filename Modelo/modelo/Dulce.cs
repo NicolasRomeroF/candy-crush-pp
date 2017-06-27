@@ -79,7 +79,7 @@ namespace CC.modelo
 
         public static bool checkDulce(char color,int recubrimiento)
         {
-            if ((color == 'A' || color == 'B' || color == 'C' || color == 'D' || color == 'E') && (recubrimiento >= 0 && recubrimiento <= 3))
+            if ((color == 'A' || color == 'B' || color == 'C' || color == 'D' || color == 'E' || color == 'X' || color == 'Y' || color == 'Z') && (recubrimiento >= 0 && recubrimiento <= 3))
                 return true;
             return false;
         }
