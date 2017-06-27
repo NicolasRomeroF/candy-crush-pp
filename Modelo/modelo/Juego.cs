@@ -47,8 +47,10 @@ namespace CC.modelo
         {
             if (J.Turnos > 0)
             {
-                J.Turnos--;
-                return T.tryMover(origen, destino);
+                bool check = T.tryMover(origen, destino);
+                if(check)
+                    J.Turnos--;
+                return check;
             }
             return false;
         }
