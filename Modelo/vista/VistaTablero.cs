@@ -24,9 +24,9 @@ namespace CC.vista
             InitializeComponent();
             Juego = j;
             generarBotones();
-            Juego.subscribeGanar(mostrarGanar);
-            Juego.subscribePerder(mostrarPerder);
-            FormClosing += VistaTablero_FormClosing;
+            Juego.subscribeGanar(mostrarGanar); //Suscribir metodo a evento de ganar
+            Juego.subscribePerder(mostrarPerder); //Suscribir metodo a evento de perder
+            FormClosing += VistaTablero_FormClosing; //Evento de cerrado
             labelUsuarioShow.Text = Juego.getNombre();
             labelPuntajeShow.Text = Juego.getPuntaje()+"";
             labelMovimientosShow.Text = Juego.getMovimientos() + "";

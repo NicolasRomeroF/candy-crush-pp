@@ -11,7 +11,7 @@ namespace CC.modelo
     public class Tablero
     {
         
-
+        //Properties
         public Dulce[,] Matriz { get; private set; }
         public int CantTipos { get; private set; }
         private int _N;
@@ -49,7 +49,7 @@ namespace CC.modelo
         }
 
        
-
+        //Constructores
         public Tablero(int N, int M, int dificultad)
         {
             this.N = N;
@@ -80,6 +80,12 @@ namespace CC.modelo
             fromArchivo(tablero);
         }
 
+
+        /// <summary>
+        /// Comprueba si el fichero ubicado en la ruta contiene un tablero valido
+        /// </summary>
+        /// <param name="path">Coordenadas de origen</param>
+        /// <returns>Booleano indicando si el tablero es valido</returns>
         public static bool checkBoard(string path)
         {
             StreamReader file = new StreamReader(path);
@@ -165,6 +171,11 @@ namespace CC.modelo
             printTablero();
         }
 
+        /// <summary>
+        /// Guarda un tablero en un fichero en la direccion especificada
+        /// </summary>
+        /// <param name="path">Direccion donde guardar tablero</param>
+        /// <returns>void</returns>
         public void toArchivo(string path)
         {
             StreamWriter file = new StreamWriter(path);
@@ -259,6 +270,12 @@ namespace CC.modelo
                     Matriz[i, j] = new Dulce();
         }
 
+        /// <summary>
+        /// Metodo que intenta mover en el tablero, retornando un booleano que indica si hubo exito
+        /// </summary>
+        /// <param name="origen">Coordenadas de origen</param>
+        /// <param name="destino">Coordenadas de destino</param>
+        /// <returns>Booleano indicando si se logro mover o no</returns>
         public bool tryMover(Coords origen,Coords destino)
         {
             if(checkMover(origen,destino))
@@ -272,6 +289,12 @@ namespace CC.modelo
             return false;
         }
 
+        /// <summary>
+        /// Metodo que mueve dos dulces en el tablero
+        /// </summary>
+        /// <param name="origen">Coordenadas de origen</param>
+        /// <param name="destino">Coordenadas de destino</param>
+        /// <returns>void</returns>
         public void mover(Coords origen, Coords destino)
         {
             Dulce aux = Matriz[origen.Fila, origen.Columna];
@@ -297,6 +320,10 @@ namespace CC.modelo
             return d;
         }
 
+        /// <summary>
+        /// Muestra el tablero por consola
+        /// </summary>
+        /// <returns>void</returns>
         public void printTablero()
         {
             for (int i = 0; i < N; i++)
@@ -309,6 +336,10 @@ namespace CC.modelo
             }
         }
 
+        /// <summary>
+        /// Devuelve una lista con dulces a eliminar si es que los hubiera
+        /// </summary>
+        /// <returns>Lista con dulces a eliminar en caso de haberlos</returns>
         public List<Coords> checkCandies()
         {
             int i, j;
@@ -376,6 +407,11 @@ namespace CC.modelo
             return filaDulces;
         }
 
+        /// <summary>
+        /// Elimina los dulces entregados como entrada
+        /// </summary>
+        /// <param name="eliminar">Coordenadas de dulces a eliminar</param>
+        /// <returns>void</returns>
         public void eliminar(List<Coords> eliminar)
         {
             int size = eliminar.Count;
