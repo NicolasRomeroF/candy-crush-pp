@@ -71,7 +71,11 @@ namespace CC.vista
                 DialogResult result = MessageBox.Show("¿Esta seguro que quiere salir?", "Salir", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    Environment.Exit(0);
+                    try
+                    {
+                        Environment.Exit(0);
+                    }
+                    catch { }
                 }
                 else
                 {
